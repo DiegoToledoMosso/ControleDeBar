@@ -30,7 +30,7 @@ public class Garcom : EntidadeBase<Garcom>
             erros += "O campo \"Nome\" deve conter entre 3 e 100 caracteres.";        
 
         if (!Regex.IsMatch(Cpf, @"^\d{3}\.\d{3}\.\d{3}\-\d{2}$"))
-            erros += "O campo \"Garçons\" deve seguir o padrão 999.999.999-99).";
+            erros += "O campo \"CPF\" deve seguir o padrão 999.999.999-99).";
 
         return erros;
     }
