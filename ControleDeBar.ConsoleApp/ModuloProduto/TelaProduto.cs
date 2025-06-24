@@ -90,7 +90,7 @@ public class TelaProduto : TelaBase<Produto>, ITela
 
             Console.WriteLine(
               "{0, -10} | {1, -20} | {2, -15}",
-                p.Id, p.Nome, p.Precos
+                p.Id, p.Nome, p.Valor
             );
         }
 
@@ -99,14 +99,36 @@ public class TelaProduto : TelaBase<Produto>, ITela
 
     protected override Produto ObterDados()
     {
-        Console.Write("Digite o nome do produto: ");
-        string nome = Console.ReadLine();
+        string nome = string.Empty;
 
-        Console.Write("Digite o preço do produto: ");
-        string preco = Console.ReadLine();
+        while (string.IsNullOrWhiteSpace(nome))
+        {
+            Console.Write("Digite o nome do produto: ");
+            nome = Console.ReadLine()!;
 
-        Produto produto = new Produto(nome, preco);
+            if (string.IsNullOrWhiteSpace(nome))
+            {
+                ApresentarMensagem("Digite um nome válido!", ConsoleColor.DarkYellow);
+                Console.Clear();
+            }
+        }
 
-        return produto;
+        bool conseguiuConverterValor = false;
+
+        decimal valor = 0.0m;
+
+        while (!conseguiuConverterValor)
+        {
+            Console.Write("Digite o valor do produto: ");
+            conseguiuConverterValor = decimal.TryParse(Console.ReadLine(), out valor);
+
+            if (!conseguiuConverterValor)
+            {
+                ApresentarMensagem("Digite um valor numérico válido!", ConsoleColor.DarkYellow);
+                Console.Clear();
+            }
+        }
+
+        return new Produto(nome, valor);
     }
 }

@@ -98,10 +98,10 @@ public class TelaGarcom : TelaBase<Garcom>, ITela
 
     protected override Garcom ObterDados()
     {
-        Console.Write("Digite o nome do garçom: ");
+        Console.Write("Digite o nome do garçom, nome deve conter no mínimo 3 letras : ");
         string nome = Console.ReadLine();        
 
-        Console.Write("Digite o CPF do garçom: ");
+        Console.Write("Digite o CPF do garçom, deve seguir o padrão 999.999.999-99 : ");
         string cpf = Console.ReadLine();
 
         Garcom garcom = new Garcom(nome, cpf);
